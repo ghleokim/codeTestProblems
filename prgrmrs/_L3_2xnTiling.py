@@ -18,26 +18,55 @@
 # 홀수일 때는 가로길이 짝수일경우 + 1 하나 추가: 
 
 
-n = 10
-
 # 1 n개
-result = []
-case = []
-for i in range(int(n/2)):
-    case.append(['1']*(n-i))
-for j in range(int(n/2)):
-    case[j].extend(['2']*j)
+# result = []
+# case = []
+# for i in range(int(n/2)):
+#     case.append(['1']*(n-i))
+# for j in range(int(n/2)):
+#     case[j].extend(['2']*j)
 
-print(case)
+# print(case)
 
-[]1[]1[]1[]1[]
+# []1[]1[]1[]1[]
+# []2[]2[]2[]2[]...[]
 
-# 1 n개     2 0개 ==== 1
+# 1 n개     2 0개 ==== 1 = n C 0
 # 1 n-2개   2 1개 ==== (n-2 + 1)C 1
 # 1 n-4개   2 2개 ==== (n-4 + 1)C 2
 
+# 1 0개(짝수) 2 n/2개 === 1
 # 1 1개(홀수) 2 (n-1)/2개 ==== 1
 
-#combination:
-# nCm = n * n - 1 * ... * n - m + 1 / m!
+# n 0 / n-2 1 / n-4 2 ... 
 
+
+#combination:
+# nCm = nPm / m!
+
+# 짝수일 때 n/2회 반복
+# 홀수일 때 (n-1)/2 + 1회 반복 (또는 (n+1)/2회 반복)
+# 
+# sum = 0
+# for num in range(int(n/2)):
+ 
+# n permutation
+sum=0
+
+def comb(a,b):
+    p,f = 1,1
+
+    if b == 0:
+        return 1
+
+    for x in range(a,a-b,-1):
+        p *= x
+    for x in range(b,1,-1):
+        f *= x
+
+    return int(p/f)
+
+print(comb(10,3))
+
+
+# n factorial
