@@ -1,3 +1,5 @@
+#https://programmers.co.kr/learn/courses/30/lessons/12899
+
 def tri(n,i=0,res=[]):
     if i==0:
         res=[]
