@@ -1,3 +1,17 @@
+# [0,0,0,0]
+# ['','','','']
+# [' ',' ',' ',' ']
+
+# for case in case_list:
+#     show = [['','','',''],['','','',''],['','','',''],['','','','']]
+#     for n in range(4):
+#         show[case[n][1]][case[n][0]] = n+1
+
+#     for i in show:
+#         print(i)
+#     print('----')
+
+
 case_list = [
     # 4 * 1
     [(0,0),(1,0),(2,0),(3,0)],  # 0 ㅡ
@@ -28,20 +42,6 @@ case_list = [
     [(0,0),(0,1),(0,2),(0,3)]  # 18 ㅣ
 ]
 
-
-# [0,0,0,0]
-# ['','','','']
-# [' ',' ',' ',' ']
-
-# for case in case_list:
-#     show = [['','','',''],['','','',''],['','','',''],['','','','']]
-#     for n in range(4):
-#         show[case[n][1]][case[n][0]] = n+1
-
-#     for i in show:
-#         print(i)
-#     print('----')
-
 # pos: x, y, m, n
 def getSum(cases, pos):
     res = 0
@@ -49,6 +49,7 @@ def getSum(cases, pos):
         i = box[0] + pos[0]
         j = box[1] + pos[1]
         res += board[j][i]
+
     return res
 
 def getCase(pos):
