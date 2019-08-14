@@ -1,26 +1,18 @@
-"""
-11 10
-1 1 0
-1 1 1 1 1 1 1 1 1 1
-1 0 0 0 0 0 0 0 0 1
-1 0 0 0 1 1 1 1 0 1
-1 0 0 1 1 0 0 0 0 1
-1 0 1 1 0 0 0 0 0 1
-1 0 0 0 0 0 0 0 0 1
-1 0 0 0 0 0 0 1 0 1
-1 0 0 0 0 0 1 1 0 1
-1 0 0 0 0 0 1 1 0 1
-1 0 0 0 0 0 0 0 0 1
-1 1 1 1 1 1 1 1 1 1
-"""
+# 20190813_백준_14503.py
+# https://www.acmicpc.net/problem/14503
 
+"""
+로봇 청소기
+29056kb
+60ms
+"""
+# 0 north 1 east 2 south 3 west
 direction = [(-1, 0), (0, 1), (1, 0), (0, -1)]
 
 # check wall: check if direction is wall or not
 def checkWall(p, d):
     r = p[0] + direction[d][0]
     c = p[1] + direction[d][1]
-
     if board[r][c] == 1:
         return False
     else:
@@ -30,7 +22,6 @@ def checkWall(p, d):
 def checkDirty(p, d):
     r = p[0] + direction[d][0]
     c = p[1] + direction[d][1]
-
     if board[r][c] == 2:
         return False
     else:
@@ -39,14 +30,12 @@ def checkDirty(p, d):
 def move(p, d):
     r = p[0] + direction[d][0]
     c = p[1] + direction[d][1]
-
     return (r, c)
 
 def back(p, d):
     d = (d + 2) % 4
     r = p[0] + direction[d][0]
     c = p[1] + direction[d][1]
-
     return (r, c)
 
 N, M = map(int, input().split())
@@ -57,20 +46,19 @@ for row in range(N):
     board.append(list(map(int, input().split())))
 
 originalD = D
-rotate = 1
+rotate = 0
 en = 0
 cnt = 0
 pos = (R, C)
 
 while True:
-    #en += 1
-
+    # 1. clean current position
     if board[pos[0]][pos[1]] == 0:
         board[pos[0]][pos[1]] = 2
         cnt += 1
 
     left = (D + 3) % 4
-    # check wall on the left:
+    # 2. check wall on the left:
     # if empty, check dirty
         # if dirty, move point
         # if not dirty, rotate
@@ -87,13 +75,13 @@ while True:
                 break
             else:
                 pos = bck
+                D = originalD
                 rotate = 0
         elif checkDirty(pos,left):
             pos = move(pos,left)
             D = left
             originalD = D
             rotate = 0
-        
         else:
             D = left
             rotate += 1
@@ -106,6 +94,7 @@ while True:
                 break
             else:
                 pos = bck
+                D = originalD
                 rotate = 0
 
 print(cnt)
