@@ -19,8 +19,49 @@ for number, person in enumerate(people):
         rank[0] = 1
         continue
 
+    # n명의 사람이 있을 때 k등이 될 경우:
+    # 등수 같은 사람 카운트(본인 포함)
+    # k보다 큰 등수 전부 미루기
     newR = rank[0]
+    cntSame = 1
 
+    for fnum, fper in enumerate(former):
+        print('     fnum', end=' ')
+        print(fnum)
+        print(newR)
+        
+        if fper[0] > person[0] and fper[1] > person[1]:
+            if newR > rank[fnum]:
+                newR = rank[fnum] - 1 
+
+        elif fper[0] < person[0] and fper[1] < person[1]:
+            if newR < rank[fnum]:
+                newR = rank[fnum] + 1
+        else:
+            newR = rank[fnum]
+            cntSame += 1
+            print('cntSame', end=' ')
+            print(cntSame)
+    print(rank)
+    
+    for fnum in range(len(former)):
+        if newR == 1:
+            rank[fnum] += cntSame
+        elif rank[fnum] > newR:
+            rank[fnum] += cntSame
+
+    rank[number] = newR
+
+
+
+print(rank)
+
+
+
+
+
+
+"""
     # compare
     for num, frmr in enumerate(former):
         # new bigger
@@ -51,3 +92,4 @@ for number, person in enumerate(people):
     print(rank)
         
 print(rank)
+"""
